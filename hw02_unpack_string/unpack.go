@@ -39,13 +39,17 @@ func Unpack(s string) (string, error) {
 				result = result[:len(result)-1]
 				continue
 			}
-			for j := 0; j < n-1; j++ {
-				result += string(arrayRunes[i-1])
-			}
+			repeater(&result, arrayRunes[i-1], n)
 			continue
 		}
 		result += string(char)
 	}
 
 	return result, nil
+}
+
+func repeater(result *string, s rune, n int) {
+	for j := 0; j < n-1; j++ {
+		*result += string(s)
+	}
 }
